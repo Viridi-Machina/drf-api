@@ -111,17 +111,17 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-if 'CLIENT_ORIGIN' in os.environ:
-     CORS_ALLOWED_ORIGINS = [
-         os.environ.get('CLIENT_ORIGIN')
-     ]
-if 'CLIENT_ORIGIN_DEV' in os.environ:
-    extracted_url = re.match(
-        r'^.+-', os.environ.get('CLIENT_ORIGIN_DEV', ''), re.IGNORECASE
-    ).group(0)
-    CORS_ALLOWED_ORIGIN_REGEXES = [
-        rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
-    ]
+if "CLIENT_ORIGIN" in os.environ:
+    CORS_ALLOWED_ORIGINS = [os.environ.get("CLIENT_ORIGIN")]
+
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^https://.*\.codeinstitute-ide\.net$",
+    r"^https://.*\.gitpod\.io$",
+    r"^http:\/\/localhost:*([0-9]+)?$",
+    r"^https:\/\/localhost:*([0-9]+)?$",
+    r"^http:\/\/127.0.0.1:*([0-9]+)?$",
+    r"^https:\/\/127.0.0.1:*([0-9]+)?$"
+]
 
 CORS_ALLOW_CREDENTIALS = True
 
